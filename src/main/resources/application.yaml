@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: medical_appointment_booking_system
+  output:
+    ansi:
+      enabled: always
+  profiles:
+    active:
+    - dev
