@@ -1,5 +1,7 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
+import java.time.LocalDate;
+
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DocumentType;
@@ -11,6 +13,10 @@ public final class Patient extends User {
     private PhoneNumber phoneNumber;
     private String identificationDocumentNumber;
     private DocumentType identificationDocumentType;
+
+    public Patient(Long id, Role role, String email, String password, String fullName, LocalDate birthDate) {
+        super(id, role, email, password, fullName, birthDate);
+    }
 
     public Address getAddress() {
         return address;
