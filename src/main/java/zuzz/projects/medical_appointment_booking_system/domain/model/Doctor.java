@@ -8,4 +8,20 @@ public final class Doctor extends User {
 
     private Speciality speciality;
     private List<Schedule> scheduleAvailability;
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    public List<Schedule> getScheduleAvailability() {
+        return scheduleAvailability;
+    }
+
+    public void setScheduleAvailability(List<Schedule> scheduleAvailability) {
+        this.scheduleAvailability = scheduleAvailability;
+    }
 }
