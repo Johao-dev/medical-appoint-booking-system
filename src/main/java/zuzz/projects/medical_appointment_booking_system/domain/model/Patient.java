@@ -1,7 +1,10 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
+import zuzz.projects.medical_appointment_booking_system.domain.exception.DoctorNotAvailableException;
+import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Pending;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
+import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DocumentType;
 
 public final class Patient {
@@ -13,6 +16,13 @@ public final class Patient {
     private PhoneNumber phoneNumber;
     private String identificationDocumentNumber;
     private DocumentType identificationDocumentType;
+
+    public Appointment requestAppointment(Doctor doctor, Schedule schedule, String reason) {
+        if (!doctor.isAvailable(schedule))
+            throw new DoctorNotAvailableException("The doctor is not available for that schedule");
+
+        return Appointment.of(this, doctor, schedule, new Pending(), reason);
+    }
 
     public Long getId() {
         return id;
