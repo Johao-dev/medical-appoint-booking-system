@@ -16,18 +16,6 @@ public class Schedule {
         this.endTime = endTime;
     }
 
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
     public boolean overlapsWith(Schedule other) {
         if (!isTheSameDay(other.getDayOfWeek())) {
             return false;
@@ -47,5 +35,17 @@ public class Schedule {
 
     private boolean isAfterMyEndTime(LocalTime otherStartTime) {
         return otherStartTime.isBefore(this.endTime);
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
     }
 }
