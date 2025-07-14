@@ -1,14 +1,27 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public final class ScheduleManager extends User {
+public final class ScheduleManager {
 
+    private Long id;
+    private User user;
     private List<Doctor> assignedDoctors;
 
-    public ScheduleManager(Long id, Role role, String email, String password, String fullName, LocalDate birthDate) {
-        super(id, role, email, password, fullName, birthDate);
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Doctor> getAssignedDoctors() {

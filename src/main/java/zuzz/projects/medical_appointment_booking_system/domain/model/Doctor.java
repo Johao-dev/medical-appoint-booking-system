@@ -1,25 +1,32 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
 
-public final class Doctor extends User {
+public final class Doctor {
 
+    private Long id;
+    private User user;
     private Speciality speciality;
     private List<Schedule> scheduleAvailability;
 
-    public Doctor(
-        Long id, Role role, String email, String password, String fullName, LocalDate birthDate,
-        Speciality speciality
-    ) {
-        super(id, role, email, password, fullName, birthDate);
-        this.speciality = speciality;
-        this.scheduleAvailability = new ArrayList<>();
+    public Long getId() {
+        return id;
     }
-    
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Speciality getSpeciality() {
         return speciality;
     }

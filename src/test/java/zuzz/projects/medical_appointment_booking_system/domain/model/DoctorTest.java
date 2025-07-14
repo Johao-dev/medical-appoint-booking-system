@@ -17,15 +17,8 @@ public class DoctorTest {
 
     @BeforeEach
     void setup() {
-        doctor = new Doctor(
-            1L,
-            new Role(1L, "ROLE_DOCTOR"),
-            "email@email.com",
-            "password",
-            "Full Name",
-            LocalDate.of(1997, 7, 11),
-            new Speciality(1L, "Cardiologia")
-        );
+        // TODO: mapear correctamente
+        doctor = new Doctor();
     }
 
     @Test

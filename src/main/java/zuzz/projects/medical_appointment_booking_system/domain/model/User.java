@@ -2,7 +2,7 @@ package zuzz.projects.medical_appointment_booking_system.domain.model;
 
 import java.time.LocalDate;
 
-public sealed class User permits Patient, Doctor, ScheduleManager {
+public class User  {
 
     private Long id;
     private Role role;
@@ -10,15 +10,6 @@ public sealed class User permits Patient, Doctor, ScheduleManager {
     private String password;
     private String fullName;
     private LocalDate birthDate;
-
-    public User(Long id, Role role, String email, String password, String fullName, LocalDate birthDate) {
-        this.id = id;
-        this.role = role;
-        this.email = email;
-        this.password = password;
-        this.fullName = fullName;
-        this.birthDate = birthDate;
-    }
 
     public Long getId() {
         return id;
