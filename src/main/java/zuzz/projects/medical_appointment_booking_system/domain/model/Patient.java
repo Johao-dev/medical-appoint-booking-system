@@ -24,6 +24,24 @@ public final class Patient {
         return Appointment.of(this, doctor, schedule, new Pending(), reason);
     }
 
+    public void cancelAppointment(Appointment appointment) {
+        // TODO: A patient can canceled an appointment
+    }
+
+    public void viewAllAppointments() {
+        // TODO: A patient can view all his appointments
+    }
+
+    public void updatePersonalInformation(Address address, PhoneNumber phoneNumber) {
+        // TODO: A patient can update his personal information: fullname, email, password (User)
+        // phone number and address. 
+    }
+
+    public boolean haveAnAppointmentOnSchedule(Schedule schedule) {
+        // TODO: Querie to know if a patient already have an appointment on schedule
+        return false;
+    }
+
     public Long getId() {
         return id;
     }

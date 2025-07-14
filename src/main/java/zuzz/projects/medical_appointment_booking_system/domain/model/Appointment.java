@@ -25,6 +25,26 @@ public class Appointment {
         return appointment;
     }
 
+    public void confirm() {
+        // TODO: An appointment can be confirmed
+    }
+
+    public void cancel() {
+        // TODO: An appointment can be cancelled
+    }
+
+    public void reschedule() {
+        // TODO: An appointment can be rescheduled
+    }
+
+    public void reject() {
+        // TODO: An appointment can be rejected
+    }
+
+    public void complete() {
+        // TODO: An appointment can be completed
+    }
+
     public Long getId() {
         return id;
     }
