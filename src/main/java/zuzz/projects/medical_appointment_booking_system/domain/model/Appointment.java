@@ -1,6 +1,11 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
 import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.AppointmentState;
+import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Cancelled;
+import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Completed;
+import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Confirmed;
+import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Pending;
+import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Rejected;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
 
 public class Appointment {
@@ -26,23 +31,27 @@ public class Appointment {
     }
 
     public void confirm() {
-        // TODO: An appointment can be confirmed
+        changeState(new Confirmed());
     }
 
     public void cancel() {
-        // TODO: An appointment can be cancelled
+        changeState(new Cancelled());
     }
 
     public void reschedule() {
-        // TODO: An appointment can be rescheduled
+        changeState(new Pending());
     }
 
     public void reject() {
-        // TODO: An appointment can be rejected
+        changeState(new Rejected());
     }
 
     public void complete() {
-        // TODO: An appointment can be completed
+        changeState(new Completed());
+    }
+
+    private void changeState(AppointmentState newState) {
+        this.state = newState;
     }
 
     public Long getId() {
