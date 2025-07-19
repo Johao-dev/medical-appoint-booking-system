@@ -8,7 +8,7 @@ import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Phone
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DocumentType;
 
-public final class Patient {
+public class Patient {
 
     private Long id;
     private User user;
@@ -27,10 +27,6 @@ public final class Patient {
 
     public void cancelAppointment(Appointment appointment) {
         // TODO: A patient can canceled an appointment
-    }
-
-    public void viewAllAppointments() {
-        // TODO: A patient can view all his appointments
     }
 
     public void updatePersonalInformation(PatientPersonalInformation newPersonalInformation) {

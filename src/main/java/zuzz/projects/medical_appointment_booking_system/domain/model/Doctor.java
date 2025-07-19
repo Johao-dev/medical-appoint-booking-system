@@ -6,7 +6,7 @@ import java.util.List;
 import zuzz.projects.medical_appointment_booking_system.domain.exception.OverlappingSchedulesException;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
 
-public final class Doctor {
+public class Doctor {
 
     private Long id;
     private User user;
@@ -47,14 +47,6 @@ public final class Doctor {
             }
         }
         return available;
-    }
-
-    public void listConfirmedAppointments() {
-
-    }
-
-    public void listCompletedAppointments() {
-
     }
 
     public Long getId() {

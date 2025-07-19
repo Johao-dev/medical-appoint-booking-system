@@ -1,39 +1,16 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.AppointmentState;
-
-public final class ScheduleManager {
+public class ScheduleManager {
 
     private Long id;
     private User user;
     private List<Doctor> assignedDoctors;
 
-    public void confirmAppointment(Appointment appointment) {
-        // TODO: A ScheduleManager can confirm an appointment
-    }
-
-    public void rejectAppointment(Appointment appointment) {
-        // TODO: A ScheduleManager can reject an appointment
-    }
-
-    public void viewAppointmentDetails(Appointment appointment) {
-        // TODO: A ScheduleManager can view an appointment and its details
-    }
-
-    public List<Appointment> ViewPendingAppointments() {
-        // TODO: A ScheduleManager can view all pending appointments
-        return null;
-    }
-
-    public List<Appointment> listAppointmentsByState(AppointmentState state) {
-        // TODO: A ScheduleManager can view all appointments (by state)
-        return null;
-    }
-
-    public void updateDoctorAvailability() {
-        // TODO: A ScheduleManager can change or update the schedule availability of a doctor
+    public ScheduleManager() {
+        this.assignedDoctors = new ArrayList<>();
     }
 
     public Long getId() {
