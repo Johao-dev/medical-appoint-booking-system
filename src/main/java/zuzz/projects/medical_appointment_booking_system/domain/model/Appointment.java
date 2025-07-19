@@ -38,6 +38,7 @@ public class Appointment {
         changeState(new Cancelled());
     }
 
+    // TODO: Añadir parametro Schedule newSchedule y validacion de tiempo de anticipacion
     public void reschedule() {
         changeState(new Pending());
     }
