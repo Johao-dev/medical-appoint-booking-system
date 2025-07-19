@@ -3,6 +3,7 @@ package zuzz.projects.medical_appointment_booking_system.domain.model;
 import zuzz.projects.medical_appointment_booking_system.domain.exception.DoctorNotAvailableException;
 import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Pending;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
+import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PatientPersonalInformation;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DocumentType;
@@ -32,14 +33,32 @@ public final class Patient {
         // TODO: A patient can view all his appointments
     }
 
-    public void updatePersonalInformation(Address address, PhoneNumber phoneNumber) {
-        // TODO: A patient can update his personal information: fullname, email, password (User)
-        // phone number and address. 
+    public void updatePersonalInformation(PatientPersonalInformation newPersonalInformation) {
+        updateEmail(newPersonalInformation.getEmail());
+        updatePassword(newPersonalInformation.getPassword());
+        this.address = newPersonalInformation.getAddress();
+        this.phoneNumber = newPersonalInformation.getPhoneNumber();
     }
 
     public boolean haveAnAppointmentOnSchedule(Schedule schedule) {
         // TODO: Querie to know if a patient already have an appointment on schedule
         return false;
+    }
+
+    public void updatePassword(String newPassword) {
+        this.user.updatePassword(newPassword);
+    }
+
+    public String getPassword() {
+        return this.user.getPassword();
+    }
+
+    public void updateEmail(String newEmail) {
+        this.user.updateEmail(newEmail);
+    }
+
+    public String getEmail() {
+        return this.user.getEmail();
     }
 
     public Long getId() {

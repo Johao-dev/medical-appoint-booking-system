@@ -61,6 +61,24 @@ public class Address {
         }
     }
 
+    public String getFullAddress() {
+        StringBuilder address = new StringBuilder();
+        address.append(street);
+        address.append("\n");
+        address.append(district);
+        address.append(", ");
+        address.append(province);
+        address.append(", ");
+        address.append(department);
+        address.append("\n");
+        address.append(postalCode);
+        address.append("\n");
+        address.append("Referencia: ");
+        address.append(reference);
+
+        return address.toString();
+    }
+
     public String getStreet() {
         return street;
     }
@@ -109,21 +127,52 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public String getFullAddress() {
-        StringBuilder address = new StringBuilder();
-        address.append(street);
-        address.append("\n");
-        address.append(district);
-        address.append(", ");
-        address.append(province);
-        address.append(", ");
-        address.append(department);
-        address.append("\n");
-        address.append(postalCode);
-        address.append("\n");
-        address.append("Referencia: ");
-        address.append(reference);
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((street == null) ? 0 : street.hashCode());
+        result = prime * result + ((district == null) ? 0 : district.hashCode());
+        result = prime * result + ((province == null) ? 0 : province.hashCode());
+        result = prime * result + ((department == null) ? 0 : department.hashCode());
+        result = prime * result + ((postalCode == null) ? 0 : postalCode.hashCode());
+        return result;
+    }
 
-        return address.toString();
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Address other = (Address) obj;
+        if (street == null) {
+            if (other.street != null)
+                return false;
+        } else if (!street.equals(other.street))
+            return false;
+        if (district == null) {
+            if (other.district != null)
+                return false;
+        } else if (!district.equals(other.district))
+            return false;
+        if (province == null) {
+            if (other.province != null)
+                return false;
+        } else if (!province.equals(other.province))
+            return false;
+        if (department == null) {
+            if (other.department != null)
+                return false;
+        } else if (!department.equals(other.department))
+            return false;
+        if (postalCode == null) {
+            if (other.postalCode != null)
+                return false;
+        } else if (!postalCode.equals(other.postalCode))
+            return false;
+        return true;
     }
 }
