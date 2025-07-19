@@ -1,6 +1,5 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
-import zuzz.projects.medical_appointment_booking_system.domain.exception.DoctorNotAvailableException;
 import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Pending;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PatientPersonalInformation;
@@ -19,14 +18,7 @@ public class Patient {
     private DocumentType identificationDocumentType;
 
     public Appointment requestAppointment(Doctor doctor, Schedule schedule, String reason) {
-        if (!doctor.isAvailable(schedule))
-            throw new DoctorNotAvailableException("The doctor is not available for that schedule");
-
         return Appointment.of(this, doctor, schedule, new Pending(), reason);
-    }
-
-    public void cancelAppointment(Appointment appointment) {
-        // TODO: A patient can canceled an appointment
     }
 
     public void updatePersonalInformation(PatientPersonalInformation newPersonalInformation) {
@@ -34,11 +26,6 @@ public class Patient {
         updatePassword(newPersonalInformation.getPassword());
         this.address = newPersonalInformation.getAddress();
         this.phoneNumber = newPersonalInformation.getPhoneNumber();
-    }
-
-    public boolean haveAnAppointmentOnSchedule(Schedule schedule) {
-        // TODO: Querie to know if a patient already have an appointment on schedule
-        return false;
     }
 
     public void updatePassword(String newPassword) {
