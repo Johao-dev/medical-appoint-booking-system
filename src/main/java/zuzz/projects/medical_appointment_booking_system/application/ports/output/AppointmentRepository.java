@@ -1,20 +1,22 @@
 package zuzz.projects.medical_appointment_booking_system.application.ports.output;
 
-import java.util.List;
-import java.util.Optional;
-
+import zuzz.projects.medical_appointment_booking_system.application.dto.AppointmentCancelledRequest;
+import zuzz.projects.medical_appointment_booking_system.application.dto.AppointmentSearchParameters;
+import zuzz.projects.medical_appointment_booking_system.application.dto.AppointmentUpdateStateRequest;
 import zuzz.projects.medical_appointment_booking_system.domain.model.Appointment;
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.AppointmentState;
+import zuzz.projects.medical_appointment_booking_system.shared.Page;
 
-public interface AppointmentRepository {
+public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
 
-    Appointment save(); // AppointmentRequest
+    Page<Appointment> findAllByFilters(AppointmentSearchParameters searchParameters);
 
-    Optional<Appointment> findById(Long id);
+    Page<Appointment> findAllByPatient(Long patientId, AppointmentSearchParameters searchParameters);
 
-    List<Appointment> findAll(Long id);
+    Page<Appointment> findAllByDoctor(Long doctorId, AppointmentSearchParameters searchParameters);
 
-    List<Appointment> findAllByState(AppointmentState state);
+    Page<Appointment> findAllByScheduleManager(Long scheduleManagerId, AppointmentSearchParameters searchParameters);
 
-    Appointment updateState(Long id, AppointmentState newState);
+    Appointment updateState(AppointmentUpdateStateRequest request);
+
+    Appointment cancel(AppointmentCancelledRequest request);
 }

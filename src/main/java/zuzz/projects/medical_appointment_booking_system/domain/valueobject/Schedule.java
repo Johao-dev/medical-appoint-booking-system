@@ -4,6 +4,8 @@ import java.time.LocalTime;
 
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DayOfWeek;
 
+// TODO: remove this class and all references to it
+
 public class Schedule {
 
     private final DayOfWeek dayOfWeek;
