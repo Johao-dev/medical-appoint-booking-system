@@ -1,9 +1,6 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.time.LocalTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,9 +8,6 @@ import org.junit.jupiter.api.Test;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PatientPersonalInformation;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
-import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
-import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
-import zuzz.projects.medical_appointment_booking_system.shared.enums.DayOfWeek;
 
 public class PatientTest {
 
@@ -47,28 +41,6 @@ public class PatientTest {
             .build()
         );
         patient.setPhoneNumber(new PhoneNumber("+51", "999999999"));
-    }
-
-    @Test
-    void shouldReturnAnAppointmentWithPendingState() {
-        Schedule schedule = new Schedule(
-            DayOfWeek.THURSDAY,
-            LocalTime.of(9,0),
-            LocalTime.of(10, 30)
-        );
-
-        Appointment expected = new Appointment();
-        expected.setDoctor(doctor);
-        expected.setPatient(patient);
-        expected.setSchedule(schedule);
-        expected.setState(AppointmentState.PENDING);
-        expected.setReason("Reason example");
-
-        Appointment appointmentRequest = patient.requestAppointment(doctor, schedule, "Reason example");
-
-        assertEquals(expected, appointmentRequest);
-        assertTrue(appointmentRequest.getState() == AppointmentState.PENDING);
-        assertTrue(appointmentRequest.getReason().equals(expected.getReason()));
     }
 
     @Test

@@ -1,6 +1,5 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
-import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 
 public class Appointment {
@@ -9,17 +8,17 @@ public class Appointment {
     private String reason;
     private Doctor doctor;
     private Patient patient;
-    private Schedule schedule;
+    private DoctorAvailability doctorAvailability;
     private AppointmentState state;
     private ScheduleManager scheduleManager;
 
-    public static Appointment of(Patient patient, Doctor doctor, Schedule schedule,
-        AppointmentState state, String reason) {
-            
+    public static Appointment of(Patient patient, Doctor doctor, DoctorAvailability doctorAvailability,
+            AppointmentState state, String reason) {
+
         Appointment appointment = new Appointment();
         appointment.setPatient(patient);
         appointment.setDoctor(doctor);
-        appointment.setSchedule(schedule);
+        appointment.setDoctorAvailability(doctorAvailability);
         appointment.setState(state);
         appointment.setReason(reason);
         return appointment;
@@ -57,12 +56,12 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public DoctorAvailability getDoctorAvailability() {
+        return doctorAvailability;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public void setDoctorAvailability(DoctorAvailability doctorAvailability) {
+        this.doctorAvailability = doctorAvailability;
     }
 
     public AppointmentState getState() {
@@ -88,7 +87,7 @@ public class Appointment {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((doctor == null) ? 0 : doctor.hashCode());
         result = prime * result + ((patient == null) ? 0 : patient.hashCode());
-        result = prime * result + ((schedule == null) ? 0 : schedule.hashCode());
+        result = prime * result + ((doctorAvailability == null) ? 0 : doctorAvailability.hashCode());
         return result;
     }
 
@@ -116,10 +115,10 @@ public class Appointment {
                 return false;
         } else if (!patient.equals(other.patient))
             return false;
-        if (schedule == null) {
-            if (other.schedule != null)
+        if (doctorAvailability == null) {
+            if (other.doctorAvailability != null)
                 return false;
-        } else if (!schedule.equals(other.schedule))
+        } else if (!doctorAvailability.equals(other.doctorAvailability))
             return false;
         return true;
     }
