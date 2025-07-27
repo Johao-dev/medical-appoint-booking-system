@@ -12,16 +12,38 @@ public class Appointment {
     private AppointmentState state;
     private ScheduleManager scheduleManager;
 
+    private Appointment(Patient patient, Doctor doctor, DoctorAvailability doctorAvailability,
+        AppointmentState initialState, String reason) {
+        this.patient = patient;
+        this.doctor = doctor;
+        this.doctorAvailability = doctorAvailability;
+        this.state = initialState;
+        this.reason = reason;
+    }
+
     public static Appointment of(Patient patient, Doctor doctor, DoctorAvailability doctorAvailability,
             AppointmentState state, String reason) {
+        return new Appointment(patient, doctor, doctorAvailability, state, reason);
+    }
 
-        Appointment appointment = new Appointment();
-        appointment.setPatient(patient);
-        appointment.setDoctor(doctor);
-        appointment.setDoctorAvailability(doctorAvailability);
-        appointment.setState(state);
-        appointment.setReason(reason);
-        return appointment;
+    public void cancel() {
+        // TODO: It can only be cancelled if it is in PENDING or CONFIRMED.
+    }
+
+    public void confirm() {
+        // TODO: It can only be confirmed if it is in PENDING.
+    }
+
+    public void reject() {
+        // TODO: It can only be rejected if it is in PENDING.
+    }
+
+    public void complete() {
+        // TODO: It can only be completed if it is in CONFIRMED.
+    }
+
+    public void expire() {
+        // TODO: It can only expire if it is PENDING or CONFIRMED (and the date has passed)
     }
 
     public Long getId() {
@@ -36,48 +58,24 @@ public class Appointment {
         return reason;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
     public Doctor getDoctor() {
         return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
     }
 
     public Patient getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
     public DoctorAvailability getDoctorAvailability() {
         return doctorAvailability;
-    }
-
-    public void setDoctorAvailability(DoctorAvailability doctorAvailability) {
-        this.doctorAvailability = doctorAvailability;
     }
 
     public AppointmentState getState() {
         return state;
     }
 
-    public void setState(AppointmentState state) {
-        this.state = state;
-    }
-
     public ScheduleManager getScheduleManager() {
         return scheduleManager;
-    }
-
-    public void setScheduleManager(ScheduleManager scheduleManager) {
-        this.scheduleManager = scheduleManager;
     }
 
     @Override
