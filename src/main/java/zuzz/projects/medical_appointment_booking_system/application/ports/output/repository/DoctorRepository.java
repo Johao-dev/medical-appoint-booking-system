@@ -1,4 +1,4 @@
-package zuzz.projects.medical_appointment_booking_system.application.ports.output;
+package zuzz.projects.medical_appointment_booking_system.application.ports.output.repository;
 
 import java.util.Optional;
 
