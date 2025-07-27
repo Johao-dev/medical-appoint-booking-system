@@ -8,12 +8,11 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Pending;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PatientPersonalInformation;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
-import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentStateName;
+import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DayOfWeek;
 
 public class PatientTest {
@@ -62,13 +61,13 @@ public class PatientTest {
         expected.setDoctor(doctor);
         expected.setPatient(patient);
         expected.setSchedule(schedule);
-        expected.setState(new Pending());
+        expected.setState(AppointmentState.PENDING);
         expected.setReason("Reason example");
 
         Appointment appointmentRequest = patient.requestAppointment(doctor, schedule, "Reason example");
 
         assertEquals(expected, appointmentRequest);
-        assertTrue(appointmentRequest.getState().getName() == AppointmentStateName.PENDING);
+        assertTrue(appointmentRequest.getState() == AppointmentState.PENDING);
         assertTrue(appointmentRequest.getReason().equals(expected.getReason()));
     }
 

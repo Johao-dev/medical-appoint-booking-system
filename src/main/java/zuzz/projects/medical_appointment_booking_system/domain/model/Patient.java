@@ -1,10 +1,10 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Pending;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PatientPersonalInformation;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
+import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DocumentType;
 
 public class Patient {
@@ -18,7 +18,7 @@ public class Patient {
     private DocumentType identificationDocumentType;
 
     public Appointment requestAppointment(Doctor doctor, Schedule schedule, String reason) {
-        return Appointment.of(this, doctor, schedule, new Pending(), reason);
+        return Appointment.of(this, doctor, schedule, AppointmentState.PENDING, reason);
     }
 
     public void updatePersonalInformation(PatientPersonalInformation newPersonalInformation) {

@@ -1,6 +1,6 @@
 package zuzz.projects.medical_appointment_booking_system.shared.enums;
 
-public enum AppointmentStateName {
+public enum AppointmentState {
 
     PENDING,
     REJECTED,

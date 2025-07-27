@@ -1,12 +1,7 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.AppointmentState;
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Cancelled;
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Completed;
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Confirmed;
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Pending;
-import zuzz.projects.medical_appointment_booking_system.domain.model.appointments.Rejected;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Schedule;
+import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 
 public class Appointment {
 
@@ -28,30 +23,6 @@ public class Appointment {
         appointment.setState(state);
         appointment.setReason(reason);
         return appointment;
-    }
-
-    public void confirm() {
-        changeState(new Confirmed());
-    }
-
-    public void cancel() {
-        changeState(new Cancelled());
-    }
-
-    public void reschedule() {
-        changeState(new Pending());
-    }
-
-    public void reject() {
-        changeState(new Rejected());
-    }
-
-    public void complete() {
-        changeState(new Completed());
-    }
-
-    private void changeState(AppointmentState newState) {
-        this.state = newState;
     }
 
     public Long getId() {

@@ -3,11 +3,11 @@ package zuzz.projects.medical_appointment_booking_system.application.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentStateName;
+import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 
 public class AppointmentFilters {
 
-    private AppointmentStateName state;
+    private AppointmentState state;
     private LocalDate appointmentDate;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -22,13 +22,13 @@ public class AppointmentFilters {
     }
 
     public static class Builder {
-        private AppointmentStateName state;
+        private AppointmentState state;
         private LocalDate appointmentDate;
         private LocalTime startTime;
         private LocalTime endTime;
         private Long specialityId;
 
-        public Builder state(AppointmentStateName state) {
+        public Builder state(AppointmentState state) {
             this.state = state;
             return this;
         }
@@ -58,11 +58,11 @@ public class AppointmentFilters {
         }
     }
 
-    public AppointmentStateName getState() {
+    public AppointmentState getState() {
         return state;
     }
 
-    public void setState(AppointmentStateName state) {
+    public void setState(AppointmentState state) {
         this.state = state;
     }
 

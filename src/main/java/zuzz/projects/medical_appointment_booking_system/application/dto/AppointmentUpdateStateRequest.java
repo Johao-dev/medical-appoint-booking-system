@@ -2,16 +2,16 @@ package zuzz.projects.medical_appointment_booking_system.application.dto;
 
 import java.util.Optional;
 
-import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentStateName;
+import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 
 public class AppointmentUpdateStateRequest {
 
     private Long appointmentId;
-    private AppointmentStateName newState;
+    private AppointmentState newState;
     private Long scheduleManagerId;
     private Optional<String> reason = Optional.empty();
 
-    public AppointmentUpdateStateRequest(Long appointmentId, AppointmentStateName newState,
+    public AppointmentUpdateStateRequest(Long appointmentId, AppointmentState newState,
             Long scheduleManagerId, String reason) {
         this.appointmentId = appointmentId;
         this.newState = newState;
@@ -27,11 +27,11 @@ public class AppointmentUpdateStateRequest {
         this.appointmentId = appointmentId;
     }
 
-    public AppointmentStateName getNewState() {
+    public AppointmentState getNewState() {
         return newState;
     }
 
-    public void setNewState(AppointmentStateName newState) {
+    public void setNewState(AppointmentState newState) {
         this.newState = newState;
     }
 
