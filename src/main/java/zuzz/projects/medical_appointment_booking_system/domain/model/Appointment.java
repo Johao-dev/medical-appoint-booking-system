@@ -46,39 +46,6 @@ public class Appointment {
         // TODO: It can only expire if it is PENDING or CONFIRMED (and the date has passed)
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public DoctorAvailability getDoctorAvailability() {
-        return doctorAvailability;
-    }
-
-    public AppointmentState getState() {
-        return state;
-    }
-
-    public ScheduleManager getScheduleManager() {
-        return scheduleManager;
-    }
-
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

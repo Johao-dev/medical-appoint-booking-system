@@ -12,28 +12,4 @@ public class ScheduleManager {
     public ScheduleManager() {
         this.assignedDoctors = new ArrayList<>();
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Doctor> getAssignedDoctors() {
-        return assignedDoctors;
-    }
-
-    public void setAssignedDoctors(List<Doctor> assignedDoctors) {
-        this.assignedDoctors = assignedDoctors;
-    }
 }
