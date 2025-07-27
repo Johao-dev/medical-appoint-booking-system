@@ -1,9 +1,7 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Address;
-import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PatientPersonalInformation;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
-import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DocumentType;
 
 public class Patient {
@@ -15,33 +13,6 @@ public class Patient {
     private PhoneNumber phoneNumber;
     private String identificationDocumentNumber;
     private DocumentType identificationDocumentType;
-
-    public Appointment requestAppointment(Doctor doctor, DoctorAvailability doctorAvailability, String reason) {
-        return Appointment.of(this, doctor, doctorAvailability, AppointmentState.PENDING, reason);
-    }
-
-    public void updatePersonalInformation(PatientPersonalInformation newPersonalInformation) {
-        updateEmail(newPersonalInformation.getEmail());
-        updatePassword(newPersonalInformation.getPassword());
-        this.address = newPersonalInformation.getAddress();
-        this.phoneNumber = newPersonalInformation.getPhoneNumber();
-    }
-
-    public void updatePassword(String newPassword) {
-        this.user.updatePassword(newPassword);
-    }
-
-    public String getPassword() {
-        return this.user.getPassword();
-    }
-
-    public void updateEmail(String newEmail) {
-        this.user.updateEmail(newEmail);
-    }
-
-    public String getEmail() {
-        return this.user.getEmail();
-    }
 
     public Long getId() {
         return id;
