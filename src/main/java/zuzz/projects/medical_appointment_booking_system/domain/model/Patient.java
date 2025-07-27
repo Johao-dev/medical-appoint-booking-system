@@ -13,4 +13,21 @@ public class Patient {
     private PhoneNumber phoneNumber;
     private String identificationDocumentNumber;
     private DocumentType identificationDocumentType;
+
+    public void updateAddress(Address newAddress) {
+        this.address = newAddress;
+    }
+
+    public void updatePhoneNumber(PhoneNumber newPhoneNumber) {
+        this.phoneNumber = newPhoneNumber;
+    }
+
+    public void updateIdentification(DocumentType type, String number) {
+        this.identificationDocumentType = type;
+        this.identificationDocumentNumber = number;
+    }
+
+    public String getPatientFullName() {
+        return "";
+    }
 }

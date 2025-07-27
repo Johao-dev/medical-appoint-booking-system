@@ -8,26 +8,22 @@ public class Appointment {
     private String reason;
     private Doctor doctor;
     private Patient patient;
-    private DoctorAvailability doctorAvailability;
     private AppointmentState state;
     private ScheduleManager scheduleManager;
+    private DoctorAvailability doctorAvailability;
 
     private Appointment(Patient patient, Doctor doctor, DoctorAvailability doctorAvailability,
         AppointmentState initialState, String reason) {
-        this.patient = patient;
-        this.doctor = doctor;
-        this.doctorAvailability = doctorAvailability;
-        this.state = initialState;
         this.reason = reason;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.state = initialState;
+        this.doctorAvailability = doctorAvailability;
     }
 
-    public static Appointment of(Patient patient, Doctor doctor, DoctorAvailability doctorAvailability,
-            AppointmentState state, String reason) {
-        return new Appointment(patient, doctor, doctorAvailability, state, reason);
-    }
-
-    public void cancel() {
-        // TODO: It can only be cancelled if it is in PENDING or CONFIRMED.
+    public static Appointment scheduleNewAppointment(Patient patient, Doctor doctor,
+        DoctorAvailability doctorAvailability, String reason) {
+        return new Appointment(patient, doctor, doctorAvailability, AppointmentState.PENDING, reason);
     }
 
     public void confirm() {
@@ -38,53 +34,24 @@ public class Appointment {
         // TODO: It can only be rejected if it is in PENDING.
     }
 
+    public void cancel() {
+        // TODO: It can only be cancelled if it is in PENDING or CONFIRMED.
+    }
+
     public void complete() {
         // TODO: It can only be completed if it is in CONFIRMED.
     }
 
     public void expire() {
-        // TODO: It can only expire if it is PENDING or CONFIRMED (and the date has passed)
+        // TODO: It can only expire if it is PENDING or CONFIRMED (and the date has
+        // passed)
     }
 
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((doctor == null) ? 0 : doctor.hashCode());
-        result = prime * result + ((patient == null) ? 0 : patient.hashCode());
-        result = prime * result + ((doctorAvailability == null) ? 0 : doctorAvailability.hashCode());
-        return result;
+    public boolean isPending() {
+        return this.state == AppointmentState.PENDING;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Appointment other = (Appointment) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (doctor == null) {
-            if (other.doctor != null)
-                return false;
-        } else if (!doctor.equals(other.doctor))
-            return false;
-        if (patient == null) {
-            if (other.patient != null)
-                return false;
-        } else if (!patient.equals(other.patient))
-            return false;
-        if (doctorAvailability == null) {
-            if (other.doctorAvailability != null)
-                return false;
-        } else if (!doctorAvailability.equals(other.doctorAvailability))
-            return false;
-        return true;
+    public boolean isConfirmed() {
+        return this.state == AppointmentState.CONFIRMED;
     }
 }

@@ -10,6 +10,10 @@ public class Role {
         this.name = name;
     }
 
+    public boolean is(String roleName) {
+        return name.equals(roleName);
+    }
+
     public Long getId() {
         return id;
     }

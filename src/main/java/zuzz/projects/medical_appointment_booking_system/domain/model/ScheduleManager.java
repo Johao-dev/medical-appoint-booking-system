@@ -12,4 +12,20 @@ public class ScheduleManager {
     public ScheduleManager() {
         this.assignedDoctors = new ArrayList<>();
     }
+
+    public void assignDoctor(Doctor doctor) {
+        assignedDoctors.add(doctor);
+    }
+
+    public void removeDoctor(Doctor doctor) {
+        assignedDoctors.remove(doctor);
+    }
+
+    public boolean managesDoctor(Doctor doctor) {
+        return assignedDoctors.contains(doctor);
+    }
+
+    public void updateUserDetails() {
+        
+    }
 }

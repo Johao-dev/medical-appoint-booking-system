@@ -9,15 +9,12 @@ public class DoctorAvailability {
 
     private Long id;
     private Doctor doctor;
-
     private LocalDate availabilityDate;
     private LocalTime startTime;
     private LocalTime endTime;
-
     private Integer durationSlotsInMinutes;
     private Integer totalSlots;
     private Integer availableSlots;
-
     private Boolean active;
 
     public void decrementSlot() {
@@ -32,6 +29,14 @@ public class DoctorAvailability {
             throw new SlotNotAvailableException("Slot is full");
 
         availableSlots++;
+    }
+
+    public void activate() {
+        this.active = true;
+    }
+
+    public void deactivate() {
+        this.active = false;
     }
 
     public boolean isAvailable() {

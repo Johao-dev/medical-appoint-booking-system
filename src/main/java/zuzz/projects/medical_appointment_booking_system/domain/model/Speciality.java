@@ -10,6 +10,10 @@ public class Speciality {
         this.name = name;
     }
 
+    public boolean is(String specialityName) {
+        return name.equals(specialityName);
+    }
+
     public Long getId() {
         return id;
     }
