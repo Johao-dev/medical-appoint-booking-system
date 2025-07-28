@@ -11,15 +11,14 @@ public class Doctor {
     }
 
     public void updateUserDetails(User newUserData) {
-
+        this.user = newUserData;
     }
 
     public boolean hasSpeciality(Speciality speciality) {
-        return false;
-        // TODO: Checks if the doctor possesses a specific Speciality
+        return this.speciality.equals(speciality);
     }
 
     public String getDoctorFullName() {
-        return "";
+        return user.getFullName();
     }
 }

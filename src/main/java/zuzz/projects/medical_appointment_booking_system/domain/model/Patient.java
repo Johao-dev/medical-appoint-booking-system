@@ -28,6 +28,6 @@ public class Patient {
     }
 
     public String getPatientFullName() {
-        return "";
+        return user.getFullName();
     }
 }
