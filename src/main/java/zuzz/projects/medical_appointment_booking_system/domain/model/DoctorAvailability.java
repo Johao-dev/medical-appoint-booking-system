@@ -1,8 +1,5 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import zuzz.projects.medical_appointment_booking_system.domain.exception.SlotNotAvailableException;
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.AvailabilityPeriod;
 
@@ -17,10 +14,17 @@ public class DoctorAvailability {
     private Integer availableSlots;
     private Boolean active;
 
+    private DoctorAvailability() {
+    }
+
     public static DoctorAvailability create(
         Doctor doctor, AvailabilityPeriod period, Integer durationSlotsInMinutes,
         Integer totalSlots, Integer availableSlots
     ) {
+        if (totalSlots <= 0) {
+            throw new IllegalArgumentException("Total slots cannot be less than or equal to 0");
+        }
+
         DoctorAvailability doctorAvailability = new DoctorAvailability();
         doctorAvailability.doctor = doctor;
         doctorAvailability.period = period;
@@ -56,5 +60,21 @@ public class DoctorAvailability {
 
     public boolean isAvailable() {
         return active && availableSlots > 0;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public Integer getDurationSlotsInMinutes() {
+        return durationSlotsInMinutes;
+    }
+
+    public Integer getTotalSlots() {
+        return totalSlots;
+    }
+
+    public Integer getAvailableSlots() {
+        return availableSlots;
     }
 }
