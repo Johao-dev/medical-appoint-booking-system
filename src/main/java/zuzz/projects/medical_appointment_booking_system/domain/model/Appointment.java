@@ -1,5 +1,7 @@
 package zuzz.projects.medical_appointment_booking_system.domain.model;
 
+import zuzz.projects.medical_appointment_booking_system.domain.exception.AppointmentAlreadyCancelledException;
+import zuzz.projects.medical_appointment_booking_system.domain.exception.InvalidAppointmentStateException;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.AppointmentState;
 
 public class Appointment {
@@ -13,38 +15,60 @@ public class Appointment {
     private DoctorAvailability doctorAvailability;
 
     private Appointment(Patient patient, Doctor doctor, DoctorAvailability doctorAvailability,
-        AppointmentState initialState, String reason) {
+            AppointmentState state, String reason) {
         this.reason = reason;
         this.doctor = doctor;
         this.patient = patient;
-        this.state = initialState;
+        this.state = state;
         this.doctorAvailability = doctorAvailability;
     }
 
     public static Appointment scheduleNewAppointment(Patient patient, Doctor doctor,
-        DoctorAvailability doctorAvailability, String reason) {
+            DoctorAvailability doctorAvailability, String reason) {
         return new Appointment(patient, doctor, doctorAvailability, AppointmentState.PENDING, reason);
     }
 
     public void confirm() {
-        // TODO: It can only be confirmed if it is in PENDING.
+        if (state != AppointmentState.PENDING) {
+            throw new InvalidAppointmentStateException("Appointment can only be confirmed if it is PENDING");
+        }
+        state = AppointmentState.CONFIRMED;
     }
 
-    public void reject() {
-        // TODO: It can only be rejected if it is in PENDING.
+    public void reject(String rejectionReason) {
+        if (state != AppointmentState.PENDING) {
+            throw new InvalidAppointmentStateException("Appointment can only be rejected if it is PENDING");
+        }
+        if (rejectionReason == null || rejectionReason.trim().isEmpty()) {
+            throw new IllegalArgumentException("Rejection reason cannot be empty");
+        }
+        state = AppointmentState.REJECTED;
+        reason = rejectionReason;
     }
 
     public void cancel() {
-        // TODO: It can only be cancelled if it is in PENDING or CONFIRMED.
+        if (state == AppointmentState.CANCELLED || state == AppointmentState.COMPLETED ||
+                state == AppointmentState.REJECTED || state == AppointmentState.EXPIRED) {
+            throw new AppointmentAlreadyCancelledException(
+                    "Appointment is already in a final state and cannot be cancelled");
+        }
+        state = AppointmentState.CANCELLED;
     }
 
     public void complete() {
-        // TODO: It can only be completed if it is in CONFIRMED.
+        if (state != AppointmentState.CONFIRMED) {
+            throw new InvalidAppointmentStateException("Appointment can only be completed if it is CONFIRMED");
+        }
+        state = AppointmentState.COMPLETED;
     }
 
     public void expire() {
-        // TODO: It can only expire if it is PENDING or CONFIRMED (and the date has
-        // passed)
+        if (this.state == AppointmentState.PENDING || this.state == AppointmentState.CONFIRMED) {
+            this.state = AppointmentState.EXPIRED;
+        } else {
+            throw new InvalidAppointmentStateException(
+                    "Appointment cannot be expired from its current state: " + this.state);
+        }
     }
 
     public boolean isPending() {
