@@ -2,6 +2,7 @@ package zuzz.projects.medical_appointment_booking_system.domain.model;
 
 import java.time.LocalDate;
 
+@SuppressWarnings("unused")
 public class User {
 
     private Long id;

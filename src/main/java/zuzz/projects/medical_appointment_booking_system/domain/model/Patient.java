@@ -4,6 +4,7 @@ import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Addre
 import zuzz.projects.medical_appointment_booking_system.domain.valueobject.PhoneNumber;
 import zuzz.projects.medical_appointment_booking_system.shared.enums.DocumentType;
 
+@SuppressWarnings("unused")
 public class Patient {
 
     private Long id;
