@@ -4,18 +4,33 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import zuzz.projects.medical_appointment_booking_system.domain.exception.SlotNotAvailableException;
+import zuzz.projects.medical_appointment_booking_system.domain.valueobject.AvailabilityPeriod;
 
+@SuppressWarnings("unused")
 public class DoctorAvailability {
 
     private Long id;
     private Doctor doctor;
-    private LocalDate availabilityDate;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private AvailabilityPeriod period;
     private Integer durationSlotsInMinutes;
     private Integer totalSlots;
     private Integer availableSlots;
     private Boolean active;
+
+    public static DoctorAvailability create(
+        Doctor doctor, AvailabilityPeriod period, Integer durationSlotsInMinutes,
+        Integer totalSlots, Integer availableSlots
+    ) {
+        DoctorAvailability doctorAvailability = new DoctorAvailability();
+        doctorAvailability.doctor = doctor;
+        doctorAvailability.period = period;
+        doctorAvailability.durationSlotsInMinutes = durationSlotsInMinutes;
+        doctorAvailability.totalSlots = totalSlots;
+        doctorAvailability.availableSlots = availableSlots;
+        doctorAvailability.active = true;
+
+        return doctorAvailability;
+    }
 
     public void decrementSlot() {
         if (availableSlots == 0)
