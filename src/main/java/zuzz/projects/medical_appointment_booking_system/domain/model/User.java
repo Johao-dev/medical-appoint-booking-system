@@ -9,7 +9,16 @@ public class User {
     private String email;
     private String password;
     private String fullName;
+    private Boolean blocked;
     private LocalDate birthDate;
+
+    public void blockAccount() {
+        this.blocked = true;
+    }
+
+    public void unblockAccount() {
+        this.blocked = false;
+    }
 
     public void updateEmail(String newEmail) {
         this.email = newEmail;
@@ -28,7 +37,11 @@ public class User {
     }
 
     public boolean hasRole(Role role) {
-        return false;
+        return this.role.equals(role);
+    }
+
+    public boolean isBlocked() {
+        return blocked;
     }
 
     public boolean isDoctor() {
@@ -37,5 +50,13 @@ public class User {
 
     public boolean isPatient() {
         return this.role.is("ROLE_PATIENT");
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 }
