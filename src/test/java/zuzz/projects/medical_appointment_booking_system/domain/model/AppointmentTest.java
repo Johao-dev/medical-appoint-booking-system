@@ -21,7 +21,7 @@ public class AppointmentTest {
 
     @BeforeEach
     void init() {
-        doctor = new Doctor();
+        doctor = Doctor.createNew(null, null);
         patient = new Patient();
 
         doctorAvailability = DoctorAvailability.create(
