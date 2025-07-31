@@ -22,7 +22,7 @@ public class AppointmentTest {
     @BeforeEach
     void init() {
         doctor = Doctor.createNew(null, null);
-        patient = new Patient();
+        patient = new Patient.Builder().build();
 
         doctorAvailability = DoctorAvailability.create(
             doctor,
