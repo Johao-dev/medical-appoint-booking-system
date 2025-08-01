@@ -72,20 +72,22 @@ public class User {
         }
     }
 
-    public void blockAccount() {
-        this.blocked = true;
-    }
-
-    public void unblockAccount() {
-        this.blocked = false;
-    }
-
     public void updateEmail(String newEmail) {
+        verifyEmail(newEmail);
         this.email = newEmail;
     }
 
+    private void verifyEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+        if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+    }
+
     public void changePassword(String newPassword) {
-        this.password = newPassword;
+        this.password = newPassword; // should be hashed
     }
 
     public void updateFullName(String newFullName) {
@@ -93,11 +95,23 @@ public class User {
     }
 
     public void updateBirthDate(LocalDate newBirthDate) {
+        if (newBirthDate.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Birth date cannot be in the future");
+        }
+        
         this.birthDate = newBirthDate;
     }
 
     public boolean hasRole(Role role) {
         return this.role.equals(role);
+    }
+
+    public void blockAccount() {
+        this.blocked = true;
+    }
+
+    public void unblockAccount() {
+        this.blocked = false;
     }
 
     public boolean isBlocked() {
@@ -118,5 +132,17 @@ public class User {
 
     public LocalDate getBirthDate() {
         return birthDate;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
