@@ -2,12 +2,14 @@ package zuzz.projects.medical_appointment_booking_system.domain.model;
 
 import java.time.LocalDate;
 
+import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Email;
+
 @SuppressWarnings("unused")
 public class User {
 
     private Long id;
     private Role role;
-    private String email;
+    private Email email;
     private String password;
     private String fullName;
     private Boolean blocked;
@@ -26,7 +28,7 @@ public class User {
     public static class Builder {
         private Long id;
         private Role role;
-        private String email;
+        private Email email;
         private String password;
         private String fullName;
         private Boolean blocked;
@@ -42,7 +44,7 @@ public class User {
             return this;
         }
 
-        public Builder email(String email) {
+        public Builder email(Email email) {
             this.email = email;
             return this;
         }
@@ -72,18 +74,11 @@ public class User {
         }
     }
 
-    public void updateEmail(String newEmail) {
-        verifyEmail(newEmail);
+    public void updateEmail(Email newEmail) {
+        if (!newEmail.isValid()) {
+            throw new IllegalArgumentException("Email is not valid");
+        }
         this.email = newEmail;
-    }
-
-    private void verifyEmail(String email) {
-        if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Email cannot be null or empty");
-        }
-        if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            throw new IllegalArgumentException("Invalid email format");
-        }
     }
 
     public void changePassword(String newPassword) {
@@ -138,7 +133,7 @@ public class User {
         return role;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 

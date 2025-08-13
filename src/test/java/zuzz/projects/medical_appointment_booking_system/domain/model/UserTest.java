@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import zuzz.projects.medical_appointment_booking_system.domain.valueobject.Email;
+
 public class UserTest {
 
     private User user;
@@ -20,7 +22,7 @@ public class UserTest {
         user = new User.Builder()
             .id(167L)
             .fullName("John Doe")
-            .email("john.doe@example.com")
+            .email(new Email("john.doe@example.com"))
             .password("password")
             .role(new Role(1L, "ROLE_PATIENT"))
             .birthDate(LocalDate.of(1990, 1, 1))
@@ -30,7 +32,7 @@ public class UserTest {
 
     @Test
     void shouldUpdateUserEmail() {
-        String newEmail = "john.doe@gmail.com";
+        Email newEmail = new Email("john.doe@gmail.com");
         user.updateEmail(newEmail);
 
         assertEquals(newEmail, user.getEmail());
@@ -41,7 +43,7 @@ public class UserTest {
         String invalidEmailFormat = "john.doe@example";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            user.updateEmail(invalidEmailFormat);
+            user.updateEmail(new Email(invalidEmailFormat));
         });
     }
 
@@ -50,7 +52,7 @@ public class UserTest {
         String newEmail = null;
 
         assertThrows(IllegalArgumentException.class, () -> {
-            user.updateEmail(newEmail);
+            user.updateEmail(new Email(newEmail));
         });
     }
 
