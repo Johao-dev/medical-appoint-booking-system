@@ -16,7 +16,7 @@ public class ScheduleManagerTests {
 
     @BeforeEach
     void setup() {
-        scheduleManager = new ScheduleManager(new User.Builder().build());
+        scheduleManager = ScheduleManager.createNew(new User.Builder().build());
     }
 
     @Test

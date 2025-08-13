@@ -12,16 +12,26 @@ public class ScheduleManager {
     private User user;
     private List<Doctor> assignedDoctors;
 
-    public ScheduleManager(User user, List<Doctor> assignedDoctors) {
-        this.id = 0L;
-        this.user = user;
-        this.assignedDoctors = new ArrayList<>(assignedDoctors);
+    public static ScheduleManager createNew(User user) {
+        ScheduleManager newScheduleManager = new ScheduleManager();
+        newScheduleManager.id = 0L;
+        newScheduleManager.user = user;
+        newScheduleManager.assignedDoctors = new ArrayList<>();
+
+        return newScheduleManager;
     }
 
-    public ScheduleManager(User user) {
-        this.id = 0L;
-        this.user = user;
-        this.assignedDoctors = new ArrayList<>();
+    public static ScheduleManager createNewWithAssignedDoctors(User user, List<Doctor> assignedDoctors) {
+        ScheduleManager newScheduleManager = new ScheduleManager();
+        newScheduleManager.id = 0L;
+        newScheduleManager.user = user;
+        newScheduleManager.assignedDoctors = new ArrayList<>(assignedDoctors);
+
+        return newScheduleManager;
+    }
+
+    private ScheduleManager() {
+
     }
 
     public void assignDoctor(Doctor doctor) {
